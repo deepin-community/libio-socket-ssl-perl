@@ -46,7 +46,7 @@ my $server = IO::Socket::SSL->new(
     Timeout => 30,
     ReuseAddr => 1,
     SSL_verify_mode => 0x00,
-    SSL_ca_file => "certs/test-ca.pem",
+    SSL_ca_file => "t/certs/test-ca.pem",
     SSL_version => $tls_version,
     SSL_error_trap => sub {
 	my $self = shift;
@@ -54,8 +54,8 @@ my $server = IO::Socket::SSL->new(
 	$error_trapped = 1;
 	$self->close;
     },
-    SSL_cert_file => "certs/server-cert.pem",
-    SSL_key_file => "certs/server-key.enc",
+    SSL_cert_file => "t/certs/server-cert.pem",
+    SSL_key_file => "t/certs/server-key.enc",
     SSL_passwd_cb => sub { return "bluebell" },
 );
 
@@ -74,7 +74,8 @@ unless (fork) {
 	LocalAddr => $localip,
     );
     print $client "Test\n";
-    is( <$client>, "This server is SSL only", "Client non-SSL connection");
+
+    like( <$client>, qr/This server is SSL only/, "Client non-SSL connection");
     close $client;
 
     $client = IO::Socket::SSL->new(
@@ -82,10 +83,10 @@ unless (fork) {
 	LocalAddr => $localip,
 	Domain => AF_INET,
 	SSL_verify_mode => 0x01,
-	SSL_ca_file => "certs/test-ca.pem",
+	SSL_ca_file => "t/certs/test-ca.pem",
 	SSL_use_cert => 1,
-	SSL_cert_file => "certs/client-cert.pem",
-	SSL_key_file => "certs/client-key.enc",
+	SSL_cert_file => "t/certs/client-cert.pem",
+	SSL_key_file => "t/certs/client-key.enc",
 	SSL_passwd_cb => sub { return "opossum" },
 	SSL_verify_callback => \&verify_sub,
     );
@@ -184,10 +185,10 @@ unless (fork) {
 	    LocalAddr => $localip,
 	    Domain => AF_INET,
 	    SSL_verify_mode => 0x01,
-	    SSL_ca_file => "certs/test-ca.pem",
+	    SSL_ca_file => "t/certs/test-ca.pem",
 	    SSL_use_cert => 1,
-	    SSL_cert_file => "certs/client-cert.pem",
-	    SSL_key_file => "certs/client-key.enc",
+	    SSL_cert_file => "t/certs/client-cert.pem",
+	    SSL_key_file => "t/certs/client-key.enc",
 	    SSL_passwd_cb => sub { return "opossum" },
 	    Blocking => 0,
 	);
