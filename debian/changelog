@@ -1,8 +1,80 @@
-libio-socket-ssl-perl (2.074-2) UNRELEASED; urgency=medium
+libio-socket-ssl-perl (2.089-1) unstable; urgency=medium
 
-  * update
+  * Import upstream version 2.089.
 
- -- Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>  Wed, 13 Jul 2022 22:55:00 +0800
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 01 Sep 2024 17:25:49 +0200
+
+libio-socket-ssl-perl (2.088-1) unstable; urgency=medium
+
+  * Import upstream version 2.088.
+  * Declare compliance with Debian policy 4.7.0
+  * Update copyright years for debian/* packaging files
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Tue, 23 Jul 2024 07:10:03 +0200
+
+libio-socket-ssl-perl (2.085-1) unstable; urgency=medium
+
+  * Import upstream version 2.085.
+  * Update years of packaging copyright.
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 27 Jan 2024 04:10:22 +0100
+
+libio-socket-ssl-perl (2.084-1) unstable; urgency=medium
+
+  * Import upstream version 2.084.
+  * Update years of packaging copyright.
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 10 Nov 2023 02:45:04 +0100
+
+libio-socket-ssl-perl (2.083-1) unstable; urgency=medium
+
+  * Import upstream version 2.083.
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Mon, 12 Jun 2023 21:21:38 +0200
+
+libio-socket-ssl-perl (2.081-2) unstable; urgency=medium
+
+  * Drop d/t/pkg-perl/smoke-files as certs/ were moved to t/
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 04 Feb 2023 10:12:27 +0100
+
+libio-socket-ssl-perl (2.081-1) unstable; urgency=medium
+
+  [ Richard Hansen ]
+  * Import upstream version 2.081.
+  * Add myself to Uploaders
+
+  [ Salvatore Bonaccorso ]
+  * Update copyright years for debian/* packaging files
+  * Declare compliance with Debian policy 4.6.2
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 04 Feb 2023 10:05:28 +0100
+
+libio-socket-ssl-perl (2.078-1) unstable; urgency=medium
+
+  * Import upstream version 2.078.
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Thu, 15 Dec 2022 22:15:56 +0100
+
+libio-socket-ssl-perl (2.077-1) unstable; urgency=medium
+
+  * Import upstream version 2.077.
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Thu, 24 Nov 2022 22:49:27 +0100
+
+libio-socket-ssl-perl (2.076-1) unstable; urgency=medium
+
+  * Import upstream version 2.076.
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Mon, 14 Nov 2022 23:07:48 +0100
+
+libio-socket-ssl-perl (2.075-1) unstable; urgency=medium
+
+  * Import upstream version 2.075.
+  * Declare compliance with Debian policy 4.6.1
+  * Update copyright years for debian/* packaging files
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Wed, 07 Sep 2022 09:02:51 +0200
 
 libio-socket-ssl-perl (2.074-2) unstable; urgency=medium
 
