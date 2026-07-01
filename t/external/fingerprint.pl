@@ -18,7 +18,7 @@ my $fingerprints= [
   },
   {
     _ => 'no OCSP stapling',
-    fingerprint => 'sha1$pub$c8ba0806b887fc15e9d98e73107a17150f847bbf',
+    fingerprint => 'sha1$pub$8facee0f1cd627f8f2eff3caae6ad5579ca1b01d',
     host => 'www.bild.de',
     ocsp => {
               staple => 0
@@ -28,7 +28,7 @@ my $fingerprints= [
   },
   {
     _ => 'this is revoked',
-    fingerprint => 'sha1$pub$f0f0c49b8a04a2dd2110e10f7806c97d87d0b26f',
+    fingerprint => 'sha1$pub$31b4b89651e35cb09606f445172d3e7c5642ed74',
     host => 'revoked.grc.com',
     ocsp => {
               revoked => 1
@@ -36,37 +36,37 @@ my $fingerprints= [
     port => 443
   },
   {
-    fingerprint => 'sha1$pub$06d0540a8a17d0b794793830811985d821833ce0',
+    fingerprint => 'sha1$pub$1ada705dc522af9da86c6e0788c1a2525c07c7d3',
     host => 'www.yahoo.com',
     port => 443,
     subject_hash_ca => '244b5494'
   },
   {
-    fingerprint => 'sha1$pub$c40d9bc2496fa2db198b27b6c1f94d1c703e7039',
+    fingerprint => 'sha1$pub$823f1729628d4fd8b7fd3f37488e6f19c5b15178',
     host => 'www.comdirect.de',
     port => 443,
     subject_hash_ca => '062cdee6'
   },
   {
-    fingerprint => 'sha1$pub$c78493da803e190c202f103049c74b02ef0a68be',
+    fingerprint => 'sha1$pub$19d4c556a1cccbe84270c474346e9ad737d1b1b2',
     host => 'meine.deutsche-bank.de',
     port => 443,
     subject_hash_ca => '607986c7'
   },
   {
-    fingerprint => 'sha1$pub$5ae9284e67d6e91db39f1f7e10cfab2e987ef1f2',
+    fingerprint => 'sha1$pub$59b067366473a080210fcab6e17a5d4486d1948e',
     host => 'www.twitter.com',
     port => 443,
-    subject_hash_ca => '3513523f'
+    subject_hash_ca => '607986c7'
   },
   {
-    fingerprint => 'sha1$pub$2003390d568988d918b40a10e2d32cf297d22117',
+    fingerprint => 'sha1$pub$73a457e8b59c271cee98a79a3a9e1dc4d1b6126a',
     host => 'www.facebook.com',
     port => 443,
     subject_hash_ca => '244b5494'
   },
   {
-    fingerprint => 'sha1$pub$0a9d53f5c6f85aa0b759c7430c83ce4afb88caf6',
+    fingerprint => 'sha1$pub$8fa5e67c40659e2afa5ed08c7a29f6e62d58d01c',
     host => 'www.live.com',
     port => 443,
     subject_hash_ca => '3513523f'

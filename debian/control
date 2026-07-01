@@ -4,7 +4,8 @@ Uploaders: gregor herrmann <gregoa@debian.org>,
            Ansgar Burchardt <ansgar@debian.org>,
            Salvatore Bonaccorso <carnil@debian.org>,
            Angel Abad <angel@debian.org>,
-           Damyan Ivanov <dmn@debian.org>
+           Damyan Ivanov <dmn@debian.org>,
+           Richard Hansen <rhansen@rhansen.org>
 Section: perl
 Testsuite: autopkgtest-pkg-perl
 Priority: optional
@@ -19,7 +20,7 @@ Build-Depends-Indep: ca-certificates <!nocheck>,
                      netbase <!nocheck>,
                      perl,
                      procps <!nocheck>
-Standards-Version: 4.6.0
+Standards-Version: 4.7.0
 Vcs-Browser: https://salsa.debian.org/perl-team/modules/packages/libio-socket-ssl-perl
 Vcs-Git: https://salsa.debian.org/perl-team/modules/packages/libio-socket-ssl-perl.git
 Homepage: https://metacpan.org/release/IO-Socket-SSL
