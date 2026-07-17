@@ -22,9 +22,9 @@ my $server = IO::Socket::SSL->new(
     Listen => 2,
     ReuseAddr => 1,
     SSL_server => 1,
-    SSL_ca_file => "certs/test-ca.pem",
-    SSL_cert_file => 'certs/server-cert.pem',
-    SSL_key_file => 'certs/server-key.pem',
+    SSL_ca_file => "t/certs/test-ca.pem",
+    SSL_cert_file => 't/certs/server-cert.pem',
+    SSL_key_file => 't/certs/server-key.pem',
     SSL_cipher_list => 'ECDHE',
     SSL_ecdh_curve => 'P-521:P-384',
 );
@@ -47,12 +47,13 @@ if (!$pid) {
     close($server);
     for my $t (@tests) {
 	my (undef,$curves) = @$t;
-	IO::Socket::SSL->new(
+	my $cl = IO::Socket::SSL->new(
 	    PeerAddr => $saddr,
 	    SSL_verify_mode => 1,
-	    SSL_ca_file => 'certs/test-ca.pem',
+	    SSL_ca_file => 't/certs/test-ca.pem',
 	    SSL_ecdh_curve => $curves,
-	);
+	) or next;
+	<$cl>;
     }
     exit;
 }
@@ -69,5 +70,6 @@ for my $t (@tests) {
     } else {
 	print "not ok # expect success $curves: $SSL_ERROR\n";
     }
+    close($csock) if $csock;
 }
 wait;

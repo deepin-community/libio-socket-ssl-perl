@@ -6,11 +6,12 @@ use IO::Socket::SSL::Utils;
 use File::Temp 'tempfile';
 do './testlib.pl' || do './t/testlib.pl' || die "no testlib";
 
-plan tests => 13;
+plan tests => 15;
 
 my ($ca1,$cakey1) = CERT_create( CA => 1, subject => { CN => 'ca1' });
 my ($cert1,$key1) = CERT_create( 
     subject => { CN => 'cert1' },
+    subjectAltNames => [ [ DNS => 'cert1' ], [ IP => '127.0.0.1' ] ],
     issuer => [ $ca1,$cakey1 ]
 );
 my ($ca2,$cakey2) = CERT_create( CA => 1, subject => { CN => 'ca2' });
@@ -21,6 +22,7 @@ my ($ica2,$icakey2) = CERT_create(
 );
 my ($cert2,$key2) = CERT_create( 
     subject => { CN => 'cert2' },
+    subjectAltNames => [ [ DNS => 'cert2' ], [ IP => '127.0.0.1' ] ],
     issuer => [ $ica2,$icakey2 ]
 );
 
@@ -42,12 +44,14 @@ for my $test (
     [ $saddr2, [$ca2], undef, "accept ca2 for saddr2", 1 ],
     [ $saddr1, [$ca2], undef, "reject ca2 for saddr1", 0 ],
     [ $saddr1, [$ca1,$ca2], undef, "accept ca[12] for saddr1", 1 ],
+    [ $saddr1, [$ca1,$ca2], $fp2, "reject with wrong forced fp but correct cert", 0, { SSL_force_fingerprint => 1 } ],
+    [ $saddr1, [$ca1,$ca2], $fp1, "accept with correct forced fp and correct cert", 1, { SSL_force_fingerprint => 1 } ],
     (defined &Net::SSLeay::X509_V_FLAG_PARTIAL_CHAIN ?
 	[ $saddr1, [$cert1], undef, "accept leaf cert1 as trust anchor for saddr1", 1 ] :
 	[ $saddr1, [$cert1], undef, "reject leaf cert1 as trust anchor for saddr1", 0 ]
     )
 ) {
-    my ($saddr,$certs,$fp,$what,$expect) = @$test;
+    my ($saddr,$certs,$fp,$what,$expect,$sslopt) = @$test;
     my $cafile;
     my $cl = IO::Socket::INET->new( $saddr ) or die $!;
     syswrite($cl,"X",1);
@@ -57,6 +61,7 @@ for my $test (
 	SSL_ca => $certs,
 	SSL_ca_file => undef,
 	SSL_ca_path => undef,
+	$sslopt ? %$sslopt : (),
     );
     ok( ($ok?1:0) == ($expect?1:0),$what);
 }
@@ -80,8 +85,10 @@ sub _server {
     defined( my $pid = fork()) or die $!;
     if ( $pid ) {
 	push @child,$pid;
+	my $saddr = '127.0.0.1:'.$sock->sockport;
+	close($sock);
 	return (
-	    '127.0.0.1:'.$sock->sockport,
+	    $saddr,
 	    map { [ 
 		'sha1$'.Net::SSLeay::X509_get_fingerprint($_,'sha1'),
 		'sha1$pub$'.unpack("H*",Net::SSLeay::X509_pubkey_digest($_,
