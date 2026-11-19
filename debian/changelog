@@ -1,3 +1,11 @@
+libio-socket-ssl-perl (2.089-1deepin1) unstable; urgency=medium
+
+  * fix(cve): CVE-2026-129891 (unknown) - Update PublicSuffix to latest
+    public suffix list   Upstream: https://github.com/noxxi/p5-io-
+    socket-ssl/commit/6e756466cd7005bcdb2e0e18eb140f33a2355c78.patch
+
+ -- deepin-ci-robot <packages@deepin.org>  Thu, 19 Nov 2026 19:24:42 +0800
+
 libio-socket-ssl-perl (2.089-1) unstable; urgency=medium
 
   * Import upstream version 2.089.
